@@ -22,7 +22,7 @@ public class CartClient
 		{
 			System.out.println("1.Add Product to Cart");
 			System.out.println("2.Delete Product from Cart");
-			System.out.println("3.List all Products");
+			System.out.println("3.List all Products of Cart");
 			System.out.println("4.exit");
 			System.out.println("Enter your Choice : ");
 			choice = sc.nextInt();

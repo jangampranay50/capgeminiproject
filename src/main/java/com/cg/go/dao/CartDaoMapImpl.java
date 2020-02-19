@@ -31,12 +31,12 @@ public class CartDaoMapImpl implements CartDao
 
 	@Override
 	public Cart deleteProductByIdInCart(int productId) throws CartException {
-		Cart product = null;
+		Cart cart = null;
 		if(map.containsKey(productId))
-			product = map.remove(productId);
+			cart = map.remove(productId);
 		else
 			throw new CartException(productId+" Id not found");
-		return product;
+		return cart;
 	}
 
 	@Override
