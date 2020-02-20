@@ -74,7 +74,7 @@ public class CartClient
 				return;
 			default :
 				System.err.println("Incorrect Choice");
-				System.out.println("Please Enter Correct Choice");
+				System.err.println("Please Enter Correct Choice");
 				break;
 			}
 		}
