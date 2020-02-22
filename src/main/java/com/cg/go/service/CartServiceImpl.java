@@ -18,15 +18,21 @@ public class CartServiceImpl implements CartService
 	{
 		cartDao = new CartDaoMapImpl();
 	}
-
+	public boolean validateId(int productId)
+	{
+		boolean flag = false;
+		String s = Integer.toString(productId);
+		flag = s.matches("[0-9]{4}");
+		return flag;
+	}
 	@Override
 	public int addProductToCart(Cart cart) throws CartException {
-		/*Random random = new Random();
-		int id = random.nextInt(100)+1000;	 
-		cart.setProductId(id);
-		id=cartDao.addProductToCart(cart);*/
+		
 		int id = cart.getProductId();
-		//cart.setProductId(id);
+		boolean  flag = validateId(id);
+		if(flag==false) {
+			throw new CartException("Product Id should be 4 digits");
+		}
 		id=cartDao.addProductToCart(cart);
 		return id;
 	}

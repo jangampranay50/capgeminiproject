@@ -32,12 +32,19 @@ public class CartClient
 			case 1:
 				System.out.println("Enter Product ID : ");
 			    int pid = sc.nextInt();
+			    sc.nextLine();
+			    System.out.println("Enter Product Name : ");
+			    String name = sc.nextLine();
+			    System.out.println("Enter Product Price : ");
+			    double price = sc.nextDouble();
 				cart = new Cart();
 				cart.setProductId(pid);
+				cart.setProductName(name);
+				cart.setProductPrice(price);
 				try
 				{
 				int id = cartService.addProductToCart(cart);
-				System.out.println("Product Id = "+id);
+				//System.out.println("Product Id = "+id);
 				}
 				catch(CartException e)
 				{
@@ -61,8 +68,9 @@ public class CartClient
 				try
 				{
 					list = cartService.findAllProductsInCart();
-					for(Cart c : list)
-						System.out.println("productId = "+c.getProductId());
+					for(Cart c1 : list)
+						System.out.println("ProductId = "+c1.getProductId()+"\nProduct Name : "+c1.getProductName()+"\nProduct Price : "+c1.getProductPrice());
+					
 				}
 				catch(CartException e)
 				{
