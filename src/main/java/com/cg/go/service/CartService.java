@@ -7,6 +7,7 @@ import com.cg.go.exception.CartException;
 
 public interface CartService 
 {
+	public boolean validateId(int productId);
 	public int addProductToCart(Cart cart) throws CartException;
 	public Cart deleteProductByIdInCart(int productId) throws CartException;
 	public List<Cart> findAllProductsInCart() throws CartException;

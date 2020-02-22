@@ -1,5 +1,6 @@
 package com.cg.go.ui;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,7 +11,7 @@ import com.cg.go.service.CartServiceImpl;
 
 public class CartClient 
 {
-	public static void main(String[] args) 
+	public static void main(String[] args) throws Exception
 	{
 		Scanner sc = new Scanner(System.in);
 	    CartService cartService = new CartServiceImpl();
@@ -30,25 +31,52 @@ public class CartClient
 			switch(choice)
 			{
 			case 1:
+				int pid = 0;
+				try
+				{
 				System.out.println("Enter Product ID : ");
-			    int pid = sc.nextInt();
+			    pid = sc.nextInt();
+			    boolean  flag = cartService.validateId(pid);
+				if(flag==false) {
+					throw new CartException("Product Id should be 4 digits");
+				}
+				}
+			    catch(InputMismatchException e)
+				{
+			    	throw new InputMismatchException("Id should be Integer");
+				}
 			    sc.nextLine();
+			    String name = null;
+			    try
+			    {
 			    System.out.println("Enter Product Name : ");
-			    String name = sc.nextLine();
+			    name = sc.nextLine();
+			    }
+			    catch(InputMismatchException e)
+			    {
+			    	throw new InputMismatchException("Name should be in Alphabets");
+			    }
+			    double price = 0;
+			    try
+			    {
 			    System.out.println("Enter Product Price : ");
-			    double price = sc.nextDouble();
+			    price = sc.nextDouble();
+			    }
+			    catch(InputMismatchException e)
+			    {
+			    	throw new InputMismatchException("Input should be numbers");
+			    }
 				cart = new Cart();
 				cart.setProductId(pid);
 				cart.setProductName(name);
 				cart.setProductPrice(price);
-				try
-				{
+				try {
 				int id = cartService.addProductToCart(cart);
 				System.out.println("Product Successfully Added to Cart (Product Id = "+id+")");
 				}
 				catch(CartException e)
 				{
-					System.err.println(e.getMessage());
+					throw new CartException(e.getMessage());
 				}
 				break;
 			case 2:
@@ -59,9 +87,13 @@ public class CartClient
 					cart = cartService.deleteProductByIdInCart(id1);
 					System.out.println("Item Deleted From Cart");
 				}
+				catch(InputMismatchException e)
+				{
+					throw new InputMismatchException("Input should be integer");
+				}
 				catch(CartException e)
 				{
-					System.err.println(e.getMessage());
+					throw new CartException(e.getMessage());
 				}
 				break;
 			case 3:
@@ -75,9 +107,13 @@ public class CartClient
 						System.err.println("Cart is Empty");
 					}
 				}
+				catch(InputMismatchException e)
+				{
+					throw new InputMismatchException("Input should be Number");
+				}
 				catch(CartException e)
 				{
-					System.err.println(e.getMessage());
+					throw new CartException(e.getMessage());
 				}
 				break;
 			case 4:
