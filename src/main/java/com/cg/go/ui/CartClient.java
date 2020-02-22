@@ -44,7 +44,7 @@ public class CartClient
 				try
 				{
 				int id = cartService.addProductToCart(cart);
-				//System.out.println("Product Id = "+id);
+				System.out.println("Product Successfully Added to Cart (Product Id = "+id+")");
 				}
 				catch(CartException e)
 				{
@@ -70,7 +70,10 @@ public class CartClient
 					list = cartService.findAllProductsInCart();
 					for(Cart c1 : list)
 						System.out.println("ProductId = "+c1.getProductId()+"\nProduct Name : "+c1.getProductName()+"\nProduct Price : "+c1.getProductPrice());
-					
+					if(list.isEmpty())
+					{
+						System.err.println("Cart is Empty");
+					}
 				}
 				catch(CartException e)
 				{

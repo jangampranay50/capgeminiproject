@@ -25,10 +25,10 @@ class AddCartTest
 	void testaddProductToCart() throws Exception
 	{
 		Cart cart=new Cart();
-		cart.setProductId(1089);
+		cart.setProductId(1001);
 		dao.addProductToCart(cart);
 		List<Cart> l=dao.findAllProductsInCart();
 		assertEquals(1,l.size());
 	}
-   
+	   
 }
