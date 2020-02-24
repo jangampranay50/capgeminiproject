@@ -1,5 +1,6 @@
 package com.cg.go.bean;
 
+//product bean class
 public class Product 
 {
 	private int productId;

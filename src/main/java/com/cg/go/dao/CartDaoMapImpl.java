@@ -17,7 +17,8 @@ public class CartDaoMapImpl implements CartDao
 	{
 		map=new HashMap<Integer,Cart>();
 	}
-
+	
+	//adding product to the cart
 	@Override
 	public int addProductToCart(Cart cart) throws CartException {
 		boolean flag = map.containsKey(cart.getProductId());
@@ -28,7 +29,8 @@ public class CartDaoMapImpl implements CartDao
 		map.put(cart.getProductId(), cart);
 		return cart.getProductId();
 	}
-
+	
+	//deleting product from the cart
 	@Override
 	public Cart deleteProductByIdInCart(int productId) throws CartException {
 		Cart cart = null;
@@ -38,7 +40,8 @@ public class CartDaoMapImpl implements CartDao
 			throw new CartException(productId+" Id not found");
 		return cart;
 	}
-
+	
+	//viewing all products in cart
 	@Override
 	public List<Cart> findAllProductsInCart() throws CartException {
 		Collection<Cart> col = map.values();

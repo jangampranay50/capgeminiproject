@@ -1,5 +1,6 @@
 package com.cg.go.bean;
 
+//cart bean class extends product bean class
 public class Cart extends Product
 {
 	private int cartId;
